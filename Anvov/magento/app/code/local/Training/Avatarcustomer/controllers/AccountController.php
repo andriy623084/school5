@@ -11,6 +11,27 @@ require_once 'Mage/Customer/controllers/AccountController.php';
 
 class Training_Avatarcustomer_AccountController extends Mage_Customer_AccountController
 {
+
+    /**
+     * Upload image to folder
+     *
+     * @param $array
+     * @throws Exception
+     */
+    protected function setUploader($arrayParameters)
+    {
+        $uploader = new Varien_File_Uploader($arrayParameters);
+        $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
+        $uploader->setAllowRenameFiles(false);
+        $uploader->setFilesDispersion(false);
+        $uploader->setAllowCreateFolders(false);
+        $path = Mage::getBaseDir('media') . DS . 'customer';
+        /** save to folder media/customer */
+        $uploader->save($path, $_FILES['avatar']['name']);
+
+        return $uploader;
+    }
+
     /**
      * Rewrite save method on edition form
      *
@@ -104,7 +125,7 @@ class Training_Avatarcustomer_AccountController extends Mage_Customer_AccountCon
 
                 /** set image */
                 if (isset($_FILES['avatar']['name']) && (file_exists($_FILES['avatar']['tmp_name'][0]))) {
-                    $uploader = new Varien_File_Uploader(
+                    $uploader = $this->setUploader(
                         array(
                             'name' => $_FILES['avatar']['name'],
                             'type' => $_FILES['avatar']['type'],
@@ -113,15 +134,6 @@ class Training_Avatarcustomer_AccountController extends Mage_Customer_AccountCon
                             'size' => $_FILES['avatar']['size']
                         )
                     );
-                    $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
-                    $uploader->setAllowRenameFiles(false);
-                    $uploader->setFilesDispersion(false);
-                    $uploader->setAllowCreateFolders(false);
-                    $path = Mage::getBaseDir('media') . DS . 'customer';
-
-                    /** save to folder media/customer */
-                    $uploader->save($path, $_FILES['avatar']['name']);
-
                     /** uploader made url to sort images by alphabet */
                     $UnstablePath = $uploader::getDispretionPath($_FILES['avatar']['name']) . '/';
                     $pathToCustomer = $UnstablePath . $_FILES['avatar']['name'];
@@ -146,5 +158,10 @@ class Training_Avatarcustomer_AccountController extends Mage_Customer_AccountCon
         }
 
         $this->_redirect('*/*/edit');
+    }
+
+    protected function addToUploader()
+    {
+
     }
 }

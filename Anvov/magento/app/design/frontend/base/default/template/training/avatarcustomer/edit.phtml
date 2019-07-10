@@ -63,15 +63,15 @@
                 </div>
             </li>
             <li>
-                <label for="education"><?php echo $this->__('Education') ?></label>
+                <label for="education" class="required"><em>*</em><?php echo $this->__('Education') ?></label>
                 <div class="input-box">
-                    <input type="text" name="education" id="education" value="<?php echo $this->escapeHtml($this->getCustomer()->getEducation()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Education')) ?>" class="input-text" />
+                    <input type="text" name="education" id="education" value="<?php echo $this->escapeHtml($this->getCustomer()->getEducation()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Education')) ?>" class="input-text required-entry" />
                 </div>
             </li>
             <li>
-                <label for="additional"><?php echo $this->__('Additional') ?></label>
+                <label for="additional" class="required"><em>*</em><?php echo $this->__('Additional') ?></label>
                 <div class="input-box">
-                    <input type="text" name="additional" id="additional" value="<?php echo $this->escapeHtml($this->getCustomer()->getAdditional()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Additional')) ?>" class="input-text" />
+                    <input type="text" name="additional" id="additional" value="<?php echo $this->escapeHtml($this->getCustomer()->getAdditional()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Additional')) ?>" class="input-text required-entry" />
                 </div>
             </li>
             <li>

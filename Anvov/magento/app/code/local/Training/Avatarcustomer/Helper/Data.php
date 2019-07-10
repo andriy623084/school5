@@ -12,18 +12,8 @@
 
 class Training_Avatarcustomer_Helper_Data extends Mage_Core_Helper_Abstract
 {
-
-    /**
-     * Method for forming Url in AccountController
-     *
-     * @param $route
-     * @return string
-     */
-    public function getMyUrl($route)
-    {
-        $route = strstr($route, 'custo', true);
-        return $route;
-    }
+    const IMAGE_HOLDER = "/media/catalog/category/person-placeholder.jpg";
+    const IMAGE_FOLDERS =  "/media/customer";
 
     /**
      * Get placeholder url for template
@@ -32,7 +22,7 @@ class Training_Avatarcustomer_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getPlaceholder()
     {
-        return "/media/catalog/category/person-placeholder.jpg";
+        return self::IMAGE_HOLDER;
     }
 
     /**
@@ -42,7 +32,7 @@ class Training_Avatarcustomer_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getPartImageUrl()
     {
-        return "/media/customer";
+        return self::IMAGE_FOLDERS;
     }
 
     /**
@@ -53,9 +43,7 @@ class Training_Avatarcustomer_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getUrl($url)
     {
-        $serverUrl = strstr($url, 'custo', true);
-
-        return $serverUrl . "media/customer";
+        return strstr($url, 'custo', true) . self::IMAGE_FOLDERS;
     }
 
     /**
@@ -66,9 +54,7 @@ class Training_Avatarcustomer_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getMultiSelect($array)
     {
-        $string = implode( ',' ,$array);
-
-        return $string;
+        return implode( ',' ,$array);
     }
 
     /**
@@ -79,8 +65,6 @@ class Training_Avatarcustomer_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getAdminPicUrl($url)
     {
-        $newUrl =  $url;
-
-        return $newUrl;
+        return $url;
     }
 }

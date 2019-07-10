@@ -19,10 +19,7 @@ class Training_Avatarcustomer_Block_Edit extends Mage_Customer_Block_Form_Edit
      */
     public function getChosenOptions()
     {
-        $string = $this->getCustomer()->getSkills();
-        $array = explode(",", $string);
-
-        return $array;
+        return explode(",", $this->getCustomer()->getSkills());
     }
 
     /**
@@ -32,9 +29,7 @@ class Training_Avatarcustomer_Block_Edit extends Mage_Customer_Block_Form_Edit
      */
     public function getImageUrl()
     {
-        $folders = Mage::helper('training_avatarcustomer')->getPartImageUrl();
-
-        return $folders . $this->getCustomer()->getAvatar();
+        return Mage::helper('training_avatarcustomer')->getPartImageUrl() . $this->getCustomer()->getAvatar();
     }
 
     /**
@@ -44,11 +39,8 @@ class Training_Avatarcustomer_Block_Edit extends Mage_Customer_Block_Form_Edit
      */
     public function adapterSourceModel()
     {
-        $model = Mage::getModel("training_avatarcustomer/skillssource");
-        $array = $model->getAllOptions();
+        $modelSource = Mage::getModel("training_avatarcustomer/skillssource");
 
-        $newArray = array_column($array, "label", "value");
-
-        return $newArray;
+        return array_column($modelSource->getAllOptions(), "label", "value");
     }
 }
