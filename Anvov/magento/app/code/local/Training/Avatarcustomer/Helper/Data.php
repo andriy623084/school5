@@ -56,15 +56,4 @@ class Training_Avatarcustomer_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return implode( ',' ,$array);
     }
-
-    /**
-     * To get new url for Image in CustomerController
-     *
-     * @param $url
-     * @return string
-     */
-    public function getAdminPicUrl($url)
-    {
-        return $url;
-    }
 }

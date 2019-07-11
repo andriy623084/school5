@@ -12,6 +12,13 @@
 
 class Training_Avatarcustomer_Block_Edit extends Mage_Customer_Block_Form_Edit
 {
+
+    /**
+     * Array from customer data
+     *
+     * return array
+     */
+    protected $skillsCustomer = null;
     /**
      * Get data from db and return array
      *
@@ -19,7 +26,13 @@ class Training_Avatarcustomer_Block_Edit extends Mage_Customer_Block_Form_Edit
      */
     public function getChosenOptions()
     {
-        return explode(",", $this->getCustomer()->getSkills());
+        if ($this->skillsCustomer != null) {
+
+            return $this->skillsCustomer;
+        }
+        $this->skillsCustomer = explode(",", $this->getCustomer()->getSkills());
+
+        return $this->skillsCustomer;
     }
 
     /**
