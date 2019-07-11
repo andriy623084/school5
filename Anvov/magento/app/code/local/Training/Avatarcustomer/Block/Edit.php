@@ -20,10 +20,17 @@ class Training_Avatarcustomer_Block_Edit extends Mage_Customer_Block_Form_Edit
      */
     protected $skillsCustomer = null;
     /**
+     * Array from customer data
+     *
+     * return array
+     */
+    protected $skillsCustomer = null;
+    /**
      * Get data from db and return array
      *
      * @return array
      */
+
     public function getChosenOptions()
     {
         if ($this->skillsCustomer != null) {
