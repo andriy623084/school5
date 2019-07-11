@@ -35,6 +35,17 @@
                 <class>Training_Avatarcustomer_Model</class>
             </training_avatarcustomer>
         </models>
+        <events>
+            <adminhtml_customer_prepare_save>
+                <observers>
+                    <training_avatarcustomer_model_adminhtml_observer>
+                        <type>singleton</type>
+                        <class>Training_Avatarcustomer_Model_Adminhtml_Observer</class>
+                        <method>changeShippingAddress</method>
+                    </training_avatarcustomer_model_adminhtml_observer>
+                </observers>
+            </adminhtml_customer_prepare_save>
+        </events>
     </global>
     <frontend>
         <routers>
@@ -54,15 +65,15 @@
             </updates>
         </layout>
     </frontend>
-    <admin>
-        <routers>
-            <adminhtml>
-                <args>
-                    <modules>
-                        <training_avatarcustomer before="Mage_Adminhtml">Training_Avatarcustomer_Adminhtml</training_avatarcustomer>
-                    </modules>
-                </args>
-            </adminhtml>
-        </routers>
-    </admin>
+<!--    <admin>-->
+<!--        <routers>-->
+<!--            <adminhtml>-->
+<!--                <args>-->
+<!--                    <modules>-->
+<!--                        <training_avatarcustomer before="Mage_Adminhtml">Training_Avatarcustomer_Adminhtml</training_avatarcustomer>-->
+<!--                    </modules>-->
+<!--                </args>-->
+<!--            </adminhtml>-->
+<!--        </routers>-->
+<!--    </admin>-->
 </config>

@@ -51,6 +51,10 @@ class Training_Avatarcustomer_AccountController extends Mage_Customer_AccountCon
             $customerForm->setFormCode('customer_account_edit')
                 ->setEntity($customer);
 
+            /** we change Post because of error in data type in db */
+            $skills = Mage::helper('training_avatarcustomer')->getMultiselect($this->getRequest()->getPost('skills'));
+            $_POST['skills'] = $skills;
+
             $customerData = $customerForm->extractData($this->getRequest());
 
             $errors = array();
@@ -120,7 +124,6 @@ class Training_Avatarcustomer_AccountController extends Mage_Customer_AccountCon
 
                 $customer->setEducation($this->getRequest()->getPost('education'));
                 $customer->setAdditional($this->getRequest()->getPost('additional'));
-                $skills = Mage::helper('training_avatarcustomer')->getMultiselect($this->getRequest()->getPost('skills'));
                 $customer->setData('skills', $skills);
 
                 /** set image */
@@ -158,10 +161,5 @@ class Training_Avatarcustomer_AccountController extends Mage_Customer_AccountCon
         }
 
         $this->_redirect('*/*/edit');
-    }
-
-    protected function addToUploader()
-    {
-
     }
 }
